@@ -9,6 +9,30 @@ function App() {
       lng: -0.09,
     }
   }
+    componentDidMount() {
+      getMessages()
+        .then(messages => {
+          this.setState({
+            messages
+          });
+        });
+    }
+  
+    showMessageForm = () => {
+      this.setState({
+        showMessageForm: true
+      });
+      getLocation()
+      .then(location => {
+        this.setState({
+          location,
+          haveUsersLocation: true,
+          zoom: 13
+        });
+      });
+    }
+  
+  
   return (
     <div className="App" >
         
@@ -27,6 +51,8 @@ function App() {
                     </Popup>
               </Marker>
       </MapContainer>
+
+      
     </div>
   </div>
   );
